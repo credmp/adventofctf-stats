@@ -52,7 +52,7 @@ fn parse_results(challenge: i32) {
 fn main() {
     println!("year	day	stars	position	name	seconds");
 
-    for i in 1..14 {
+    for i in 1..15 {
         parse_results(i);
     }
 }
