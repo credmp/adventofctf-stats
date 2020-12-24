@@ -1,4 +1,6 @@
+use chrono::prelude::*;
 use chrono::DateTime;
+use chrono::Utc;
 use serde::{Deserialize, Serialize};
 use std::fs::File;
 
@@ -24,12 +26,12 @@ fn parse_results(challenge: i32) {
 
     for x in result.data {
         let date = x.date.clone();
-
+        let dt2 = Utc.ymd(2020, 12, challenge as u32).and_hms(7, 0, 0);
         let dt = DateTime::parse_from_rfc3339(date.as_str()).unwrap();
-        let dt2 = DateTime::parse_from_rfc3339(date.as_str())
-            .unwrap()
-            .date()
-            .and_hms(7, 0, 0);
+        // let dt2 = DateTime::parse_from_rfc3339(date.as_str())
+        //     .unwrap()
+        //     .date()
+        //     .and_hms(7, 0, 0);
         //let duration = dt.signed_duration_since(dt2).to_std();
 
         let sm = dt.timestamp_millis();
@@ -52,7 +54,7 @@ fn parse_results(challenge: i32) {
 fn main() {
     println!("year	day	stars	position	name	seconds");
 
-    for i in 1..22 {
+    for i in 1..25 {
         parse_results(i);
     }
 }
